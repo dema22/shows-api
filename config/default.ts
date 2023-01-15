@@ -2,7 +2,7 @@ export default {
     port: 1337,
     dbUri: "mongodb+srv://felipe123:felipe123@felipedemaria.5fojl.mongodb.net/shows-api",
     saltWorkFactor: 10,
-    accessTokenTimeToLive: "15m",
+    accessTokenTimeToLive: "15m",//-1 15m
     refreshTokenTimeToLive: "1y",
     publicKey: `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkNTpJnUUpDmenR6zivXj
