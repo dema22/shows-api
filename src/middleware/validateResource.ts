@@ -9,7 +9,7 @@ const validate =
       schema.parse({
         body: req.body,
         query: req.query,
-        paramas: req.params,
+        params: req.params,
       });
       next();
     } catch (e: any) {
