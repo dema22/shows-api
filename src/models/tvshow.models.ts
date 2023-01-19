@@ -5,7 +5,7 @@ export interface TvShowDocument extends mongoose.Document {
   originalName: string;
 }
 
-const tvShowSchema = new mongoose.Schema({
+export const tvShowSchema = new mongoose.Schema({
     id: {
         type: Number,
         require: true
