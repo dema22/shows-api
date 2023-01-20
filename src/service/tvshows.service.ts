@@ -6,7 +6,7 @@ export async function findTvShowsByName(tvshowName: any) : Promise<TvShowDocumen
   try {
 
     const regexp = new RegExp("^"+ tvshowName);
-    let tvShowsResult  = await TvShowModel.find({original_name: regexp}).limit(5);
+    let tvShowsResult : TvShowDocument[]  = await TvShowModel.find({original_name: regexp}).limit(5);
     return tvShowsResult;
   } catch (e: any) {
     throw new Error(e);
