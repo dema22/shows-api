@@ -1,6 +1,7 @@
 import { z } from "zod";
+import mongoose from "mongoose";
 
-export const createTvShowReminderSchema = z.object({
+export const createPayload = {
   body: z.object({
     tvShow: z.object({
       _id: z.string({ required_error: "Id of the document is required." }),
@@ -33,10 +34,9 @@ export const createTvShowReminderSchema = z.object({
       .nonnegative()
       .max(5),
   }),
-});
+};
 
-
-export const updateTvShowReminderSchema = z.object({
+export const updatePayload = {
   body: z.object({
     completed: z.boolean({
       required_error: "Completed is required.",
@@ -61,22 +61,30 @@ export const updateTvShowReminderSchema = z.object({
       .nonnegative()
       .max(5),
   }),
-});
-
-
-
+};
 
 export const params = {
   params: z.object({
-    tvShowReminderid: z.string({
-      required_error: "TvShowReminder is required",
-    }),
+    tvShowReminderid: z.string()
+  }).refine((reminderId) => mongoose.isValidObjectId(reminderId.tvShowReminderid), {
+    message: "Tv Show Reminder Id you pass is not a valid Mongo Object ID.",
+    path: ["tvShowReminderid"],
   }),
 };
 
+export const createTvShowReminderSchema = z.object({
+  ...createPayload,
+});
 
 export const deleteTvShowReminderSchema = z.object({
   ...params,
 });
 
+export const updateTvShowReminderSchema = z.object({
+  ...updatePayload,
+  ...params,
+});
+
+export type CreateTvShowReminderInput = z.TypeOf<typeof createTvShowReminderSchema>;
 export type DeleteTvShowReminderInput = z.TypeOf<typeof deleteTvShowReminderSchema>;
+export type UpdateTvShowReminderInput = z.TypeOf<typeof updateTvShowReminderSchema>;

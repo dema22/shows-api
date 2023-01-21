@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteTvShowReminderInput } from "../schema/tvShowReminder.schema";
+import { DeleteTvShowReminderInput, UpdateTvShowReminderInput } from "../schema/tvShowReminder.schema";
 import {
   createTvShowReminder,
   deleteTvShowReminder,
@@ -73,7 +73,7 @@ export async function deleteTvShowsReminderHandler(
 }
 
 export async function updateTvShowsReminderHandler(
-  req: Request,
+  req: Request<UpdateTvShowReminderInput["params"], {}, UpdateTvShowReminderInput["body"]>,
   res: Response
 ) {
   try {

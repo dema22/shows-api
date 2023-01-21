@@ -70,7 +70,7 @@ export async function getTvShowsReminder(
   return remindersRes;
 }
 
-// Update a single reminder and return the reminder updated!
+// Update a single reminder and return the reminder updated.
 export async function updateTvShowReminder(
   filterQuery: FilterQuery<TvShowReminderDocument>,
   update: UpdateQuery<TvShowReminderDocument>,
