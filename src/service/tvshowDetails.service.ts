@@ -1,19 +1,24 @@
 import axios, { AxiosResponse } from "axios";
 import { TvShowDetails } from "../models/tvshowDetails.models";
 import { TvShowsDetailsFromAPI } from "../models/tvshowDetailsFromApi.models";
+import config from "config";
 
-export async function getTvShowDetails(tvShowId :string) {
+export async function getTvShowDetails(tvShowId: string) {
   try {
-    const response = await axios.get(
-      "https://api.themoviedb.org/3/tv/" + tvShowId + "?api_key=e5fa1b7231771db70b84a998344fe4e3&language=en-US&append_to_response=videos,images&include_image_language=en,null"
+    const response = await axios.get<TvShowsDetailsFromAPI>(
+      "https://api.themoviedb.org/3/tv/" +
+        tvShowId +
+        "?api_key=" +
+        config.get("APIKEYMOVIEDB") +
+        "&language=en-US&append_to_response=videos,images&include_image_language=en,null"
     );
-    //console.log(response.data);
+
     const responseTvShow: TvShowDetails = buildTvShowDetailsResponse(
       response.data
     );
     return responseTvShow;
-  } catch (error) {
-    console.log(error);
+  } catch (e: any) {
+    throw new Error(e);
   }
 }
 
@@ -35,7 +40,7 @@ function buildTvShowDetailsResponse(tvshow: TvShowsDetailsFromAPI) {
   };
   populateGenres(customTvShow, tvshow);
   buildCompleImageURL(customTvShow, tvshow);
-  buildTrailers(customTvShow,tvshow);
+  buildTrailers(customTvShow, tvshow);
   return customTvShow;
 }
 
@@ -69,13 +74,13 @@ function buildTrailers(
 ) {
   const youtubeBaseURL: string = "https://www.youtube.com/watch?v=";
   const vimeoBaseURL: string = "https://vimeo.com/";
-  let trailersURL : string [] = [];
+  let trailersURL: string[] = [];
   let completeURL: string;
 
   tvShow.videos.results.forEach((video) => {
     if (video.site === "YouTube" && video.type === "Trailer") {
       completeURL = youtubeBaseURL + video.key;
-	  completeURL = completeURL.replace("watch?v=", "embed/");
+      completeURL = completeURL.replace("watch?v=", "embed/");
       trailersURL.push(completeURL);
     }
 

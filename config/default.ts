@@ -1,4 +1,5 @@
 export default {
+    APIKEYMOVIEDB: "e5fa1b7231771db70b84a998344fe4e3",
     port: 1337,
     dbUri: "mongodb+srv://felipe123:felipe123@felipedemaria.5fojl.mongodb.net/shows-api",
     saltWorkFactor: 10,

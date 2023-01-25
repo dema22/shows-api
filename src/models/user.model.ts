@@ -12,7 +12,7 @@ export interface UserInput {
 }
 
 export interface UserDocument extends UserInput, mongoose.Document {
-  _doc? : any;
+  _doc?: any
   createAt: Date;
   updateAt: Date;
   comparePassword(candidatePassword: string): Promise<Boolean>;
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
 
 // Presaved hook
 userSchema.pre("save", async function (next) {
-  let user = this as UserDocument;
+  let user = this as unknown as UserDocument;
 
   // If the pass has not been modified.
   if (!user.isModified("password")) {

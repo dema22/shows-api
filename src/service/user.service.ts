@@ -1,6 +1,7 @@
 import { FilterQuery } from "mongoose";
 import UserModel, { UserDocument, UserInput } from "../models/user.model";
 
+// Create a user on the system and returns the created user.
 export async function createUser(input: UserInput) {
   try {
     let user = await UserModel.create(input);
@@ -13,7 +14,8 @@ export async function createUser(input: UserInput) {
 
 // Check if the user provided a valid password.
 export async function validatePassword({
-  email, password,
+  email,
+  password,
 }: {
   email: string;
   password: string;
@@ -25,13 +27,14 @@ export async function validatePassword({
   }
 
   const isValid = await user.comparePassword(password);
-  if(!isValid) {
+  if (!isValid) {
     return false;
   }
-  const { pass, ...responseUser } = user._doc;
-  return responseUser;
+
+  return user;
 }
 
+// Returns a user that match the query filter.
 export async function findUser(query: FilterQuery<UserDocument>) {
   return UserModel.findOne(query).lean();
 }

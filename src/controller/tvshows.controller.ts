@@ -16,6 +16,6 @@ export async function getTvShowsByNameHandler(req: Request, res: Response) {
     return res.send(tvShowsList);
   } catch (e: any) {
     console.log(e);
-    return res.status(404).send(e.message);
+    return res.status(404).send({message: e.message});
   }
 }
