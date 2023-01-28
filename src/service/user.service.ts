@@ -30,8 +30,8 @@ export async function validatePassword({
   if (!isValid) {
     return false;
   }
-
-  return user;
+  const { pass, ...responseUser } = user._doc;
+  return responseUser;
 }
 
 // Returns a user that match the query filter.
