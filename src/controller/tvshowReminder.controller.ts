@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
-import { DeleteTvShowReminderInput, UpdateTvShowReminderInput } from "../schema/tvShowReminder.schema";
+import {
+  DeleteTvShowReminderInput,
+  UpdateTvShowReminderInput,
+} from "../schema/tvShowReminder.schema";
 import {
   createTvShowReminder,
   deleteTvShowReminder,
   findTvShowReminder,
-  getTvShowsReminder,
+  getTvShowsReminders,
   updateTvShowReminder,
 } from "../service/tvShowReminder.service";
 
@@ -26,8 +29,14 @@ export async function createTvShowReminderHandler(req: Request, res: Response) {
 
 export async function getTvShowsReminderHandler(req: Request, res: Response) {
   try {
+    const page = req.query.page;
     const userId = res.locals.user._id;
-    const tvShowReminder = await getTvShowsReminder({ user: userId });
+    const tvShowReminder = await getTvShowsReminders(page, { user: userId });
+
+    if (!tvShowReminder.pagination.count) {
+      return res.status(404).send({ message: "You dont have any reminders." });
+    }
+
     return res.send(tvShowReminder);
   } catch (e: any) {
     console.error(e.message);
@@ -73,7 +82,11 @@ export async function deleteTvShowsReminderHandler(
 }
 
 export async function updateTvShowsReminderHandler(
-  req: Request<UpdateTvShowReminderInput["params"], {}, UpdateTvShowReminderInput["body"]>,
+  req: Request<
+    UpdateTvShowReminderInput["params"],
+    {},
+    UpdateTvShowReminderInput["body"]
+  >,
   res: Response
 ) {
   try {
