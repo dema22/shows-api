@@ -28,7 +28,9 @@ const deserializeUser = async (req: Request, res: Response, next:NextFunction) =
     // We set it on the response headers and decoded it so we can save it on res.locals.
     if(expired && refreshToken) {
         const newAccessToken = await reIssueAccessToken({refreshToken});
-
+        if(!newAccessToken) {
+            return res.status(403).send({message: "The was a problem creating a new access token with the given refresh token."});
+        }
         if(newAccessToken) {
             res.setHeader("x-access-token", newAccessToken);
         }
