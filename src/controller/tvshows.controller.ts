@@ -10,7 +10,7 @@ export async function getTvShowsByNameHandler(req: Request, res: Response) {
     const tvShowsList = await findTvShowsByName(tvshowName);
     
     if (!tvShowsList.length) {
-      return res.status(404).send({message: "There are no tv shows that match your search"});
+      return res.status(204).send({message: "There are no tv shows that match your search"});
     }
 
     return res.send(tvShowsList);

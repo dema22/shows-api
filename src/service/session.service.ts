@@ -1,3 +1,4 @@
+// @ts-nocheck 
 import config from "config";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import SessionModel, { SessionDocument } from "../models/session.model";

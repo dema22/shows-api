@@ -34,7 +34,7 @@ export async function getTvShowsReminderHandler(req: Request, res: Response) {
     const tvShowReminder = await getTvShowsReminders(page, { user: userId });
 
     if (!tvShowReminder.pagination.count) {
-      return res.status(404).send({ message: "You dont have any reminders." });
+      return res.status(204).send({ message: "You dont have any reminders." });
     }
 
     return res.send(tvShowReminder);
