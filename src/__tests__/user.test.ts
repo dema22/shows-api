@@ -125,16 +125,16 @@ describe("user", () => {
 
     describe("given the username and password are invalid", () => {
       it("should return a 401", async () => {
-        const validatePasswordUserServiceMock = jest
+        const validatePasswordMock = jest
           .spyOn(UserService, "validatePassword")
           // @ts-ignore
-          .mockReturnValue(undefined);
+          .mockReturnValue(false);
 
         const { statusCode } = await supertest(app)
           .post("/api/sessions")
           .send(userInput);
         expect(statusCode).toBe(401);
-        expect(validatePasswordUserServiceMock).toHaveBeenCalled();
+        expect(validatePasswordMock).toHaveBeenCalled();
       });
     });
   });
@@ -142,15 +142,18 @@ describe("user", () => {
   describe("get user sessions", () => {
     describe("given the user has logged in", () => {
       it("should return status code of 200 and the user sessions", async () => {
+        let sessions = [];
+        sessions.push(sessionPayload);
         const findSessionMock = jest
           .spyOn(SessionService, "findSessions")
           // @ts-ignore
-          .mockReturnValue(sessionPayload);
+          .mockReturnValue(sessions);
 
-        const { statusCode } = await supertest(app)
+        const { statusCode, body } = await supertest(app)
           .get("/api/sessions")
-          .set({ "Authorization" : myAccessToken });
+          .set({ Authorization: myAccessToken });
         expect(statusCode).toBe(200);
+        expect(body[0]._id).toEqual(sessions[0]._id);
         expect(findSessionMock).toHaveBeenCalled();
       });
     });
