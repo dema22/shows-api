@@ -28,9 +28,9 @@ describe("tvShows", () => {
         const tvShowsServiceMock = jest
           .spyOn(TvShowsService, "findTvShowsByName")
           // @ts-ignore
-          .mockReturnValueOnce({});
+          .mockReturnValueOnce([]);
 
-        const { body, statusCode } = await supertest(app).get(
+        const { statusCode } = await supertest(app).get(
           `/api/tvShows?tvShowName${tvShowName}`
         );
 
