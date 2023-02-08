@@ -13,7 +13,7 @@ export async function createTvShowReminder(
 ) {
   try {
     // First we check if there is not a reminder already created for the tv show
-    await checkTvShowReminderExistence(inputReminder);
+    await checkTvShowReminderExistence(userId, inputReminder);
 
     // Save the reminder information in the DB.
     const tvShowReminder = await TvShowReminderModel.create({
@@ -158,10 +158,12 @@ export async function findTvShowReminder(
 
 // Check if a reminder already exists looking by the id of the tv show document.
 export async function checkTvShowReminderExistence(
+  userId: string,
   inputReminder: TvShowReminderInput
 ) {
   const reminder = await findTvShowReminder({
     "tvShow._id": inputReminder.tvShow._id,
+    "user": userId 
   });
 
   if (reminder) {
