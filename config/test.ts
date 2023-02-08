@@ -1,3 +1,4 @@
+// Todo esto metelo en variables de ambiente
 export default {
     APIKEYMOVIEDB: "e5fa1b7231771db70b84a998344fe4e3",
     port: 1337,
