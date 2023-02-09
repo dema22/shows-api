@@ -19,43 +19,40 @@ const tvShowPayload = [
   },
 ];
 
-describe("tvShows", () => {
-  describe("get tvshows by name route", () => {
+describe("get tvshows by name route", () => {
+  describe("given the tvshows does not exists", () => {
+    it("should return a 204", async () => {
+      const tvShowName = "The Sopranos";
+      const tvShowsServiceMock = jest
+        .spyOn(TvShowsService, "findTvShowsByName")
+        // @ts-ignore
+        .mockReturnValueOnce([]);
 
-    describe("given the tvshows does not exists", () => {
-      it("should return a 204", async () => {
-        const tvShowName = "The Sopranos";
-        const tvShowsServiceMock = jest
-          .spyOn(TvShowsService, "findTvShowsByName")
-          // @ts-ignore
-          .mockReturnValueOnce([]);
+      const { statusCode } = await supertest(app)
+        .get("/api/tvShows")
+        .query({ tvShowName });
 
-        const { statusCode } = await supertest(app).get(
-          `/api/tvShows?tvShowName${tvShowName}`
-        );
-
-        expect(statusCode).toBe(204);
-        expect(tvShowsServiceMock).toHaveBeenCalled();
-      });
+      expect(statusCode).toBe(204);
+      expect(tvShowsServiceMock).toHaveBeenCalled();
     });
+  });
 
-    describe("given the tvshows does exists", () => {
-      it("should return a 200 status and the tv show", async () => {
-        const tvShowName = "Game of Thrones";
-        const tvShowsServiceMock = jest
-          .spyOn(TvShowsService, "findTvShowsByName")
-          // @ts-ignore
-          .mockReturnValueOnce(tvShowPayload);
+  describe("given the tvshows does exists", () => {
+    it("should return a 200 status and the tv show", async () => {
+      const tvShowName = "Game of Thrones";
+      const tvShowsServiceMock = jest
+        .spyOn(TvShowsService, "findTvShowsByName")
+        // @ts-ignore
+        .mockReturnValueOnce(tvShowPayload);
 
-        const { body, statusCode } = await supertest(app).get(
-          `/api/tvShows?tvShowName=${tvShowName}`
-        );
-        expect(statusCode).toBe(200);
-        expect(body[0]._id).toBe(tvShowPayload[0]._id);
-        expect(body[1]._id).toBe(tvShowPayload[1]._id);
-        expect(tvShowsServiceMock).toHaveBeenCalledWith(tvShowName);
-      });
+      const { body, statusCode } = await supertest(app)
+        .get("/api/tvShows")
+        .query({ tvShowName });
+
+      expect(statusCode).toBe(200);
+      expect(body[0]._id).toBe(tvShowPayload[0]._id);
+      expect(body[1]._id).toBe(tvShowPayload[1]._id);
+      expect(tvShowsServiceMock).toHaveBeenCalledWith(tvShowName);
     });
-    
   });
 });

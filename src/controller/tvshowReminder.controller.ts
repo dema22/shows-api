@@ -34,7 +34,7 @@ export async function getTvShowsReminderHandler(req: Request, res: Response) {
     const tvShowReminder = await getTvShowsReminders(page, { user: userId });
 
     if (!tvShowReminder.pagination.count) {
-      return res.status(204).send({ message: "You dont have any reminders." });
+      return res.status(200).send({ message: "You dont have any reminders." });
     }
 
     return res.send(tvShowReminder);
@@ -59,7 +59,7 @@ export async function deleteTvShowsReminderHandler(
     // Reminder does not exits
     if (!reminder) {
       return res
-        .status(404)
+        .status(200)
         .send({ message: "No reminder was found with that id." });
     }
 
@@ -72,7 +72,7 @@ export async function deleteTvShowsReminderHandler(
 
     await deleteTvShowReminder({ _id: tvShowReminderId });
 
-    return res.sendStatus(200);
+    return res.sendStatus(204);
   } catch (e: any) {
     console.error(e.message);
     return res
@@ -99,7 +99,7 @@ export async function updateTvShowsReminderHandler(
     // Reminder does not exits
     if (!reminder) {
       return res
-        .status(404)
+        .status(200)
         .send({ message: "No reminder was found with that id." });
     }
 

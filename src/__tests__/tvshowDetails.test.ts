@@ -5,7 +5,6 @@ import * as TvShowDetailsService from "../service/tvshowDetails.service";
 const app = createServer();
 
 const tvShowId = "1399";
-
 const tvShowDetailsPayload = {
   backdropPath:
     "https://image.tmdb.org/t/p/original/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
@@ -28,38 +27,36 @@ const tvShowDetailsPayload = {
   ],
 };
 
-describe("tv show details", () => {
-  describe("get tv show details", () => {
-    describe("given a valid id of a tv show", () => {
-      it("should return a status code of 200 and the details of the tv show", async () => {
-        const tvShowDetailsMock = jest
-          .spyOn(TvShowDetailsService, "getTvShowDetails")
-          // @ts-ignore
-          .mockReturnValue(tvShowDetailsPayload);
+describe("get tv show details", () => {
+  describe("given a valid id of a tv show", () => {
+    it("should return a status code of 200 and the details of the tv show", async () => {
+      const tvShowDetailsMock = jest
+        .spyOn(TvShowDetailsService, "getTvShowDetails")
+        // @ts-ignore
+        .mockReturnValue(tvShowDetailsPayload);
 
-          const { statusCode } = await supertest(app).get(
-            `/api/tvShows/${tvShowId}/details`
-          );
+      const { statusCode } = await supertest(app).get(
+        `/api/tvShows/${tvShowId}/details`
+      );
 
-          expect(statusCode).toBe(200);
-          expect(tvShowDetailsMock).toHaveBeenCalledWith(tvShowId);
-      });
+      expect(statusCode).toBe(200);
+      expect(tvShowDetailsMock).toHaveBeenCalledWith(tvShowId);
     });
+  });
 
-    describe("given the tv show details throws", () => {
-        it("should return a status code of 404", async () => {
-          const tvShowDetailsMock = jest
-            .spyOn(TvShowDetailsService, "getTvShowDetails")
-            // @ts-ignore
-            .mockRejectedValue("Oh no :(");
-  
-            const { statusCode } = await supertest(app).get(
-              `/api/tvShows/${tvShowId}/details`
-            );
-  
-            expect(statusCode).toBe(404);
-            expect(tvShowDetailsMock).toHaveBeenCalled();
-        });
-      });
+  describe("given the tv show details throws", () => {
+    it("should return a status code of 404", async () => {
+      const tvShowDetailsMock = jest
+        .spyOn(TvShowDetailsService, "getTvShowDetails")
+        // @ts-ignore
+        .mockRejectedValue(new Error("Error"));
+
+      const { statusCode } = await supertest(app).get(
+        `/api/tvShows/${tvShowId}/details`
+      );
+
+      expect(statusCode).toBe(404);
+      expect(tvShowDetailsMock).toHaveBeenCalled();
+    });
   });
 });
