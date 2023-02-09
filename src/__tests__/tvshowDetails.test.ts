@@ -35,6 +35,7 @@ describe("tv show details", () => {
         const tvShowDetailsMock = jest
           .spyOn(TvShowDetailsService, "getTvShowDetails")
           // @ts-ignore
+          // en general me gusta usar mockReturnValueOnce porque me a pasado de que interfiera en otros test el tenerlo sin el once, aunque no siempre pasa
           .mockReturnValue(tvShowDetailsPayload);
 
           const { statusCode } = await supertest(app).get(

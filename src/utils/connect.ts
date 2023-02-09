@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import config from "config";
 
 async function connect () {
+  // Sacalo de la .env
     const dbUri = config.get<string>("dbUri");
 
     try {

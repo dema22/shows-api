@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import config from "config";
 
+// Sacalo de la .env
 const privateKey = config.get<string>("privateKey");
 const publicKey = config.get<string>("publicKey");
 
