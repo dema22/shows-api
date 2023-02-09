@@ -5,6 +5,7 @@ import * as TvShowReminderService from "../service/tvShowReminder.service";
 jest.setTimeout(30000);
 
 const app = createServer();
+const reminderId = "63e2b322eba9c17dc842e800";
 const userId = "63ddd04f0f3149fc96bdd333";
 const myAccessToken =
   "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RkZDA0ZjBmMzE0OWZjOTZiZGQzMzMiLCJ1c2VybmFtZSI6IkpvYWNvIiwiZW1haWwiOiJqb2Fjb0Bob3RtYWlsLmNvbSIsIm5hbWUiOiJKb2FjbyIsImxhc3ROYW1lIjoiR29tZXoiLCJwYXNzd29yZCI6IiQyYiQxMCQyN2ZodFQ0R2gzSXljU2U4Vy8wdTllazUvVzVVOUVrLi42blJyQVhnU29KQ01UckQ2d3Q3RyIsImNyZWF0ZWRBdCI6IjIwMjMtMDItMDRUMDM6MjY6MDcuMTk5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDItMDRUMDM6MjY6MDcuMTk5WiIsIl9fdiI6MCwic2Vzc2lvbiI6IjYzZTE3Mjc3MTRhNmU4M2NhYjkwNWZkYyIsImlhdCI6MTY3NTcxOTI4OCwiZXhwIjoxNzA3Mjc2ODg4fQ.aoCzBItkPgON2X1YIk-tH-aJkYOMhDTzfqZXC7JNu7kwZbiaqv0yz1S8fZEPF3-WJH2fy5yajDLeSQnn8zqCyOvCJwhy3x89zV3Vs8Wg7vBjYz1PfWVP7jAg9_F5lIsJCdOb_SlrggglrybZMBg4RLpjLkUccqq6w8cjbX40yJkYXj5E5tLmF4ArR8mZMasNzE9gnr4hh09B_jxbd768FQjay-X-Q3TClBUF-nR1LTKQvqq9VR0AVToM-IH7fW44m2cqB7R_dWPaVOfpH5YsL50oqYOtXE0vjM4fqSYQQdHVpioGjsckqcWWGmCZHVgc_4Oot0fuO-fqb9SyzSwoPg";
@@ -200,6 +201,74 @@ describe("tv show reminder", () => {
 
         expect(statusCode).toBe(404);
         expect(getRemindersMock).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("delete tv show reminders", () => {
+    describe("given the user wants to delete a single reminder", () => {
+      it("should return a status code of 200", async () => {
+        const findReminderMock = jest
+          .spyOn(TvShowReminderService, "findTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue({ _id: reminderId, user: userId });
+
+        const deleteRimenderMock = jest
+          .spyOn(TvShowReminderService, "deleteTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue({});
+
+        const { statusCode } = await supertest(app)
+          .delete(`/api/tvShows/reminder/${reminderId}`)
+          .set({ Authorization: myAccessToken });
+
+        expect(statusCode).toBe(200);
+        expect(findReminderMock).toHaveBeenCalledWith({ _id: reminderId });
+        expect(deleteRimenderMock).toHaveBeenCalledWith({ _id: reminderId });
+      });
+    });
+
+    describe("given the reminder does not exits", () => {
+      it("should return a status code of 404", async () => {
+        const findReminderMock = jest
+          .spyOn(TvShowReminderService, "findTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue(undefined);
+
+        const deleteRimenderMock = jest
+          .spyOn(TvShowReminderService, "deleteTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue({});
+
+        const { statusCode } = await supertest(app)
+          .delete(`/api/tvShows/reminder/${reminderId}`)
+          .set({ Authorization: myAccessToken });
+
+        expect(statusCode).toBe(404);
+        expect(findReminderMock).toHaveBeenCalled();
+        expect(deleteRimenderMock).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("given the reminder does not belong to the requesting user", () => {
+      it("should return a status code of 403", async () => {
+        const findReminderMock = jest
+          .spyOn(TvShowReminderService, "findTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue({ _id: reminderId, user: "bonale" });
+
+        const deleteRimenderMock = jest
+          .spyOn(TvShowReminderService, "deleteTvShowReminder")
+          // @ts-ignore
+          .mockReturnValue({});
+
+        const { statusCode } = await supertest(app)
+          .delete(`/api/tvShows/reminder/${reminderId}`)
+          .set({ Authorization: myAccessToken });
+
+        expect(statusCode).toBe(403);
+        expect(findReminderMock).toHaveBeenCalledWith({ _id: reminderId });
+        expect(deleteRimenderMock).not.toHaveBeenCalled();
       });
     });
   });
