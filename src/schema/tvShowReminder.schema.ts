@@ -64,13 +64,31 @@ export const updatePayload = {
 };
 
 export const params = {
-  params: z.object({
-    tvShowReminderid: z.string()
-  }).refine((reminderId) => mongoose.isValidObjectId(reminderId.tvShowReminderid), {
-    message: "Tv Show Reminder Id you pass is not a valid Mongo Object ID.",
-    path: ["tvShowReminderid"],
+  params: z
+    .object({
+      tvShowReminderid: z.string(),
+    })
+    .refine(
+      (reminderId) => mongoose.isValidObjectId(reminderId.tvShowReminderid),
+      {
+        message: "Tv Show Reminder Id you pass is not a valid Mongo Object ID.",
+        path: ["tvShowReminderid"],
+      }
+    ),
+};
+
+export const queryParams = {
+  query: z.object({
+    page: z
+      .string({
+        required_error: "Page is required.",
+      }),
   }),
 };
+
+export const getTvShowReminderSchema = z.object({
+  ...queryParams,
+});
 
 export const createTvShowReminderSchema = z.object({
   ...createPayload,
@@ -85,6 +103,13 @@ export const updateTvShowReminderSchema = z.object({
   ...params,
 });
 
-export type CreateTvShowReminderInput = z.TypeOf<typeof createTvShowReminderSchema>;
-export type DeleteTvShowReminderInput = z.TypeOf<typeof deleteTvShowReminderSchema>;
-export type UpdateTvShowReminderInput = z.TypeOf<typeof updateTvShowReminderSchema>;
+export type GetTvShowReminderInput = z.TypeOf<typeof getTvShowReminderSchema>;
+export type CreateTvShowReminderInput = z.TypeOf<
+  typeof createTvShowReminderSchema
+>;
+export type DeleteTvShowReminderInput = z.TypeOf<
+  typeof deleteTvShowReminderSchema
+>;
+export type UpdateTvShowReminderInput = z.TypeOf<
+  typeof updateTvShowReminderSchema
+>;

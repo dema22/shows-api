@@ -7,7 +7,8 @@ import { createUserHandler } from "./controller/user.controller";
 import requireUser from "./middleware/requireUser";
 import validateResource from "./middleware/validateResource";
 import { createSessionSchema } from "./schema/session.schema";
-import { createTvShowReminderSchema, deleteTvShowReminderSchema, updateTvShowReminderSchema } from "./schema/tvShowReminder.schema";
+import { getTvShowSchema } from "./schema/tvshow.schema";
+import { createTvShowReminderSchema, deleteTvShowReminderSchema, getTvShowReminderSchema, updateTvShowReminderSchema } from "./schema/tvShowReminder.schema";
 import { createUserSchema } from "./schema/user.schema";
 
 function routes(app: Express) {
@@ -15,10 +16,10 @@ function routes(app: Express) {
     // Tv Show Details routes
     app.get("/api/tvShows/:id/details", getTvShowDetailsHandler);
     // Tv Show routes
-    app.get("/api/tvShows", getTvShowsByNameHandler);
+    app.get("/api/tvShows",  [validateResource(getTvShowSchema)], getTvShowsByNameHandler);
     // Tv Show reminders
     app.post("/api/tvShows/reminder", [requireUser, validateResource(createTvShowReminderSchema)], createTvShowReminderHandler);
-    app.get("/api/tvShows/reminder", requireUser, getTvShowsReminderHandler);
+    app.get("/api/tvShows/reminder", [requireUser, validateResource(getTvShowReminderSchema)], getTvShowsReminderHandler);
     app.delete("/api/tvShows/reminder/:tvShowReminderid", [requireUser,validateResource(deleteTvShowReminderSchema)], deleteTvShowsReminderHandler);
     app.put("/api/tvShows/reminder/:tvShowReminderid", [requireUser,validateResource(updateTvShowReminderSchema)], updateTvShowsReminderHandler);
     // User routes
