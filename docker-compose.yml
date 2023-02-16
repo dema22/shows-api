@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  # Mongo DB services
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:latest
+    # always restart if the container fails at some point
+    restart: always
+    # for persisting the data after restart
+    # mongo db stored all its database files by default in this directory
+    volumes:
+      - mongo_db:/data/db
+    ports:
+      - 27018:27017
+
+  # Node api services
+  api:
+    container_name: api
+    # Look for the DockerFile where this docker compose yml file is present.
+    build: .
+    ports:
+      - 1337:1337
+    #environment:
+      #PORT: 1337
+      #MONGODB_URI: mongo_db://mongo_db:27017
+      #DB_NAME: my_db
+      #NAME: Tv Shows Reminder
+    # the api dependes on mongo_db service, so it should be started after mongo db started.
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}

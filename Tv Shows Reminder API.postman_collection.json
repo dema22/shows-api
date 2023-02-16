@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "d7b5b665-e2ab-4b1a-82de-2284f670d0da",
+		"name": "Tv Shows Reminder API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13528509"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"francis\",\r\n  \"email\": \"francis@hotmail.com\",\r\n  \"name\": \"Francis\",\r\n  \"lastName\": \"Ford Coppola\",\r\n  \"password\": \"francis12345\",\r\n  \"passwordConfirmation\": \"francis12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Create Session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"francis@hotmail.com\",\r\n  \"password\": \"francis12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Session",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTcwODA4MTI4MX0.JZH3VzAMKHTdLsv6U8EcEgAl5f4pikdnAFhUeA3NgvMHaee-BcrB8cb9BmoaYJ35PYgdUvLL9oaHgtDvybbAsbxsmllqvxXpTzWIaZP9fHhR2gi-zwXHaHagix6NQzil7mQJs6zSX_iv9H4t6oDZ8IeUfKulSCaX6CZnKanmVpyGcVybc7vQDm3tf2davJvAVTAVlWVEZIOaVkB263sk0Yy-1jh4D6MXFsjdzBkwKcFWGL1e3zRY0KMyyJ77i0NriHlVma1nZ36jPsLcwfXjDjDMmE_Au2yqddj-z2puKpQSJacmIX1mboaUGhQSeC1BG6jahZKKdOpSAZPAZ2u2JQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1337/api/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Session",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1337/api/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TvShowsDetails",
+			"item": [
+				{
+					"name": "Get Tv Show Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows/1399/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows",
+								"1399",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Tv Shows Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows?tvShowName=Game+of+Thrones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows"
+							],
+							"query": [
+								{
+									"key": "tvShowName",
+									"value": "Game+of+Thrones"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TvShowReminder",
+			"item": [
+				{
+					"name": "Create a Tv Show Reminder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTcwODA4MTI4MX0.JZH3VzAMKHTdLsv6U8EcEgAl5f4pikdnAFhUeA3NgvMHaee-BcrB8cb9BmoaYJ35PYgdUvLL9oaHgtDvybbAsbxsmllqvxXpTzWIaZP9fHhR2gi-zwXHaHagix6NQzil7mQJs6zSX_iv9H4t6oDZ8IeUfKulSCaX6CZnKanmVpyGcVybc7vQDm3tf2davJvAVTAVlWVEZIOaVkB263sk0Yy-1jh4D6MXFsjdzBkwKcFWGL1e3zRY0KMyyJ77i0NriHlVma1nZ36jPsLcwfXjDjDMmE_Au2yqddj-z2puKpQSJacmIX1mboaUGhQSeC1BG6jahZKKdOpSAZPAZ2u2JQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tvShow\": {\r\n        \"_id\": \"63bf15ecc82d69b948516ae8\",\r\n        \"id\": 1398,\r\n        \"original_name\": \"The Sopranos\"\r\n    },\r\n    \"completed\": false,\r\n    \"currentSeason\": 9,\r\n    \"currentEpisode\": 90,\r\n    \"personalRating\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows/reminder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows",
+								"reminder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get TvShowsReminders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTcwODA4MTI4MX0.JZH3VzAMKHTdLsv6U8EcEgAl5f4pikdnAFhUeA3NgvMHaee-BcrB8cb9BmoaYJ35PYgdUvLL9oaHgtDvybbAsbxsmllqvxXpTzWIaZP9fHhR2gi-zwXHaHagix6NQzil7mQJs6zSX_iv9H4t6oDZ8IeUfKulSCaX6CZnKanmVpyGcVybc7vQDm3tf2davJvAVTAVlWVEZIOaVkB263sk0Yy-1jh4D6MXFsjdzBkwKcFWGL1e3zRY0KMyyJ77i0NriHlVma1nZ36jPsLcwfXjDjDMmE_Au2yqddj-z2puKpQSJacmIX1mboaUGhQSeC1BG6jahZKKdOpSAZPAZ2u2JQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows/reminder?page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows",
+								"reminder"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delte a reminder",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTcwODA4MTI4MX0.JZH3VzAMKHTdLsv6U8EcEgAl5f4pikdnAFhUeA3NgvMHaee-BcrB8cb9BmoaYJ35PYgdUvLL9oaHgtDvybbAsbxsmllqvxXpTzWIaZP9fHhR2gi-zwXHaHagix6NQzil7mQJs6zSX_iv9H4t6oDZ8IeUfKulSCaX6CZnKanmVpyGcVybc7vQDm3tf2davJvAVTAVlWVEZIOaVkB263sk0Yy-1jh4D6MXFsjdzBkwKcFWGL1e3zRY0KMyyJ77i0NriHlVma1nZ36jPsLcwfXjDjDMmE_Au2yqddj-z2puKpQSJacmIX1mboaUGhQSeC1BG6jahZKKdOpSAZPAZ2u2JQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows/reminder/63edb98c0b04823b7c0dfca5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows",
+								"reminder",
+								"63edb98c0b04823b7c0dfca5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a tv show reminder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTY3NjUyNDU4MX0.KkpdWiT_w9KYDVcPfPmoipDrg_oAsFenAPMSF_8KBv-3TbzZjDN1pljXCMHwvC4I6QWrF_FKe2203GA7lwC4eU9FjQDD-cgteQ_KSMeCzou83QSIt_xAqBwR6iXSkCbZBLib3ihwJUBGN8Ar3WRwIwmUqj29MpFV0nNHIimEUUS9ASMe2Haj-7H8dPybd5VGvMdMwf6VVYWsiSxjmrKve52Y-dRWQLLs7dQCEY1R61Ve56aTBSsFGBykTmkHn3BaSv2Z5TrVXPCS2AcIfnzp735wOhQt8r_Wb7A7GbjQw_DZqsPPLQ4zG3gPsH38bq9vNMZ7fNOs8yIn17Tr-RY73w",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VkYjg5ZTBiMDQ4MjNiN2MwZGZjOTIiLCJ1c2VybmFtZSI6ImZyYW5jaXMiLCJlbWFpbCI6ImZyYW5jaXNAaG90bWFpbC5jb20iLCJuYW1lIjoiRnJhbmNpcyIsImxhc3ROYW1lIjoiRm9yZCBDb3Bwb2xhIiwicGFzc3dvcmQiOiIkMmIkMTAkY1hUdFltbW42L21Na0pPdFQuZ2RvT2JHNm02WkEzRVp2dWlBSy9Pd3phRm9lMll4UjFSbWUiLCJjcmVhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTAyLTE2VDA1OjAxOjE4LjAxMloiLCJfX3YiOjAsInNlc3Npb24iOiI2M2VkYjhhMTBiMDQ4MjNiN2MwZGZjOTUiLCJpYXQiOjE2NzY1MjM2ODEsImV4cCI6MTcwODA4MTI4MX0.JZH3VzAMKHTdLsv6U8EcEgAl5f4pikdnAFhUeA3NgvMHaee-BcrB8cb9BmoaYJ35PYgdUvLL9oaHgtDvybbAsbxsmllqvxXpTzWIaZP9fHhR2gi-zwXHaHagix6NQzil7mQJs6zSX_iv9H4t6oDZ8IeUfKulSCaX6CZnKanmVpyGcVybc7vQDm3tf2davJvAVTAVlWVEZIOaVkB263sk0Yy-1jh4D6MXFsjdzBkwKcFWGL1e3zRY0KMyyJ77i0NriHlVma1nZ36jPsLcwfXjDjDMmE_Au2yqddj-z2puKpQSJacmIX1mboaUGhQSeC1BG6jahZKKdOpSAZPAZ2u2JQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"completed\": true,\r\n    \"currentSeason\": 1,\r\n    \"currentEpisode\": 1,\r\n    \"personalRating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/tvShows/reminder/63edb98c0b04823b7c0dfca5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"tvShows",
+								"reminder",
+								"63edb98c0b04823b7c0dfca5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
