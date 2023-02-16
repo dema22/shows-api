@@ -37,10 +37,26 @@ In order to run The Tv Shows Reminder Api, you will need:
 1. Generate new keys: https://travistidwell.com/jsencrypt/demo/
 2. Base64 encode the keys: https://www.base64encode.org/
 
-
 # .env format:
     PRIVATE_KEY="YOUR PRIVATE KEY GOES HERE"
     PUBLIC_KEY="YOUR PUBLIC KEY GOES HERE"
     MONGODB_URI="mongodb://mongo_db:27017"
     PORT=1337
     APIKEY_MOVIEDB="YOUR TMDB API KEY GOES HERE"
+
+
+# Technologies used:
+
+    Node.js
+    MongoDB with Mongoose
+    TypeScript
+    Express.js & Express.js middleware
+    Zod validation
+    Docker and docker compose
+    Jest and Supertest
+
+## Data flow
+![](./diagrams/data-flow.png)
+
+## Access & refresh token flow
+![](./diagrams/refresh-token-flow.png)
